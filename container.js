@@ -47,6 +47,15 @@ module.exports = function( log ) {
 		else
 			register( name, fn, true );
 	},
+	replaceDependency = function(name, instance) {
+		var logMessage = components[name] ? "replaced" : "loaded";
+		components[ name ] = {
+			instance: instance,
+			resolved: true
+		};
+		log.debug( logMessage, name );
+	};
+
 	load = function( name, instance ) {
 		if( components[ name ] )
 			log.fatal( 'Same name was already registered', name );
@@ -317,6 +326,7 @@ module.exports = function( log ) {
 	return {
 		register: register,
 		load: load,
+		replaceDependency:replaceDependency,
 		resolve: resolve,
 		resolveAll: resolveAll,
 		registerLib: registerLib,

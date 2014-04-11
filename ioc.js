@@ -22,6 +22,12 @@
 		container.registerDependency( name, loaded );
 		return pub;
 	};
+
+	pub.replaceDependency = function(name, loaded) {
+		container.replaceDependency(name, loaded);
+		return pub;
+	};
+
 	pub.registerLib = function( required ) {
 		if( typeof( required ) == 'string' )
 			container.registerLib( required, require( required ) );
